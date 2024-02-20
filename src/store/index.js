@@ -6,5 +6,8 @@ export const store = reactive({
         uri: 'https://api.themoviedb.org/3/',
         // salvo la mia chiave
         key: 'db0595e17eecf660fba86c3530dedbff',
-    }
-})
+    },
+
+    movies: [],
+
+});

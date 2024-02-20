@@ -16,7 +16,7 @@ export default {
   methods: {
     Search() {
       axios
-        .get(this.store.api.uri + '/search/movie', {
+        .get(`${this.store.api.uri}/search/movie`, {
           // in params posso mettere tanti parametri
           params: {
             // recupero la key e la query
@@ -25,7 +25,8 @@ export default {
           },
         })
         .then((response) => {
-          console.log(response.data);
+          store.movies = response.data.results;
+
         });
     },
 
@@ -38,16 +39,26 @@ export default {
   <header>
     <div class="container mt-5">
       <!-- creo la searchbar -->
-      <nav class="navbar bg-body-tertiary">
-        <div class="container-fluid">
-          <a class="navbar-brand">Boolflix</a>
-          <form class="d-flex" role="search">
-            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search"
-              v-model="searchedTerm">
-            <button class="btn btn-primary btn-outline-success" type="submit" @click="Search()">Search</button>
-          </form>
-        </div>
-      </nav>
+
+      <div class="d-flex">
+        <input class="form-control me-2" type="text" placeholder="Search" v-model="searchedTerm" @keyup.enter="Search()">
+        <button class="btn btn-primary" @click="Search()">Search</button>
+
+      </div>
+
+
+
+      <div class="container mt-5">
+        <!-- info che mi servono -->
+        <ul v-for="movie in store.movies">
+          <!-- prendo i nomi delle chiavi che voglio -->
+          <li>titolo: {{ movie.title }}</li>
+          <li>titolo originale: {{ movie.original_title }}</li>
+          <li>lingua: {{ movie.original_language }}</li>
+          <li>voto: {{ movie.vote_average }}</li>
+        </ul>
+      </div>
+
     </div>
 
   </header>
