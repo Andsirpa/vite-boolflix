@@ -3,6 +3,7 @@
 import axios from "axios";
 import { store } from "./store";
 import AppHeader from "./components/App.Header.vue";
+import AppMain from "./components/AppMain.vue";
 
 
 export default {
@@ -14,7 +15,7 @@ export default {
     };
   },
 
-  components: { AppHeader },
+  components: { AppHeader, AppMain },
   // creo il metodo per la ricerca
   methods: {
 
@@ -93,7 +94,6 @@ export default {
   <div class="container mt-5">
 
     <app-header @search="Search" />
-
     <app-main />
 
   </div>
