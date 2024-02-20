@@ -13,11 +13,11 @@ export default {
     methods: {
         getFlag(langCode) {
             // guard close per rendere il codice più compatto
-            if (langCode == 'it') return new URL('./assets/img/itflag.jpeg', import.meta.url).href;
-            if (langCode == 'en') return new URL('./assets/img/engflag.png', import.meta.url).href;
+            if (langCode == 'it') return new URL('../assets/img/itflag.jpeg', import.meta.url).href;
+            if (langCode == 'en') return new URL('../assets/img/engflag.png', import.meta.url).href;
 
             // se la lingua è diversa metto una bandiera bianca
-            return new URL('./assets/img/whiteflag.jpeg', import.meta.url).href;
+            return new URL('../assets/img/whiteflag.jpeg', import.meta.url).href;
 
         },
 
@@ -40,7 +40,7 @@ export default {
             <li>voto: {{ movie.vote }}</li>
         </ul>
 
-        <h2>Tv Setries</h2>
+        <h2>Tv Series</h2>
         <!-- info che mi servono -->
         <ul v-for="tvSerie in store.tvSeries">
             <!-- prendo i nomi delle chiavi che voglio usare -->

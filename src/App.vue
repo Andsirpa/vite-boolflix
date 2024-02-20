@@ -38,6 +38,7 @@ export default {
               original_title: movie.original_title,
               language: movie.original_language,
               vote: movie.vote_average,
+              poster: movie.poster_path,
             };
           });
         });
@@ -47,43 +48,32 @@ export default {
     fetchTvSeries(searchedTerm) {
       axios
         .get(`${this.store.api.uri}/search/tv`, {
-          // in params posso mettere tanti parametri
+
           params: {
-            // recupero la key e la query
+
             api_key: store.api.key,
             query: searchedTerm,
           },
         })
         .then((response) => {
-          // qui uso il destructuring, sintassi alternativa
           store.tvSeries = response.data.results.map((tvSerie) => {
-            // prendo le proprietà dall'oggetto tvSerie..
-            const { title, original_title, language, vote } = tvSerie;
-            // ..e le assegno al nuovo oggetto che diventa l'elemento del nuovo array tvSeries messo in store
-            return { title, original_title, language, vote };
+            return {
+              // nel map posso modificare i nomi chiavi
+              title: tvSerie.title,
+              original_title: tvSerie.original_title,
+              language: tvSerie.original_language,
+              vote: tvSerie.vote_average,
+              poster: tvSerie.poster_path,
+            };
           });
-        });
 
+        });
     },
 
     Search(searchedTerm) {
       this.fetchMovies(searchedTerm);
       this.fetchTvSeries(searchedTerm);
     },
-
-
-
-    // aggiungo le bandiere
-
-    // getFlag(langCode) {
-    //   // guard close per rendere il codice più compatto
-    //   if (langCode == 'it') return new URL('./assets/img/itflag.jpeg', import.meta.url).href;
-    //   if (langCode == 'en') return new URL('./assets/img/engflag.png', import.meta.url).href;
-
-    //   // se la lingua è diversa metto una bandiera bianca
-    //   return new URL('./assets/img/whiteflag.jpeg', import.meta.url).href;
-
-    // },
 
   },
 };
