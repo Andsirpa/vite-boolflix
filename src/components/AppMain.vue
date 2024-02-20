@@ -37,7 +37,12 @@ export default {
             <li>lingua:
                 <img :src="getFlag(movie.language)" width="50">
             </li>
-            <li>voto: {{ movie.vote }}</li>
+            <li>voto: {{ movie.vote }} <br>
+                <!-- stampo le stelle in base al voto -->
+                <font-awesome-icon v-for="star in 5"
+                    :icon="star <= movie.vote ? 'fa-solid fa-star' : 'fa-regular fa-star'" />
+            </li>
+
             <!-- aggiungo il poster e gli do la dimensione desiderata -->
             <li><img :src="`https://image.tmdb.org/t/p/w342/${movie.poster_path}`" alt=""></li>
         </ul>
@@ -51,7 +56,10 @@ export default {
             <li>lingua:
                 <img :src="getFlag(tvSerie.language)" width="50">
             </li>
-            <li>voto: {{ tvSerie.vote }}</li>
+            <li>voto: {{ tvSerie.vote }} <br>
+                <font-awesome-icon v-for="star in 5"
+                    :icon="star <= tvSerie.vote ? 'fa-solid fa-star' : 'fa-regular fa-star'" />
+            </li>
             <li><img :src="`https://image.tmdb.org/t/p/w342/${tvSerie.poster_path}`" alt=""></li>
 
         </ul>
