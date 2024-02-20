@@ -2,16 +2,19 @@
 <script>
 import axios from "axios";
 import { store } from "./store";
+import AppHeader from "./components/App.Header.vue";
+
 
 export default {
   data() {
     return {
       store,
-      searchedTerm: '',
+      // searchedTerm: '',
 
     };
   },
 
+  components: { AppHeader }
   // creo il metodo per la ricerca
   methods: {
 
@@ -62,26 +65,26 @@ export default {
 
     },
 
-  }
     Search() {
-    this.fetchMovies();
-    this.fetchTvSeries();
+      this.fetchMovies();
+      this.fetchTvSeries();
+    },
+
+
+
+    // aggiungo le bandiere
+
+    getFlag(langCode) {
+      // guard close per rendere il codice più compatto
+      if (langCode == 'it') return new URL('./assets/img/itflag.jpeg', import.meta.url).href;
+      if (langCode == 'en') return new URL('./assets/img/engflag.png', import.meta.url).href;
+
+      // se la lingua è diversa metto una bandiera bianca
+      return new URL('./assets/img/whiteflag.jpeg', import.meta.url).href;
+
+    },
+
   },
-
-
-  // aggiungo le bandiere
-
-  getFlag(langCode) {
-    // guard close per rendere il codice più compatto
-    if (langCode == 'it') return new URL('./assets/img/itflag.jpeg', import.meta.url).href;
-    if (langCode == 'en') return new URL('./assets/img/engflag.png', import.meta.url).href;
-
-    // se la lingua è diversa metto una bandiera bianca
-    return new URL('./assets/img/whiteflag.jpeg', import.meta.url).href;
-
-  },
-
-},
 };
 </script>
 
@@ -89,16 +92,12 @@ export default {
 <template>
   <header>
     <div class="container mt-5">
-      <!-- creo la searchbar -->
-      <div class="d-flex">
-        <input class="form-control me-2" type="text" placeholder="Search" v-model="searchedTerm" @keyup.enter="Search()">
-        <button class="btn btn-primary" @click="Search()">Search</button>
-
-      </div>
-
-
+      <!-- uso il componente AppHeader -->
+      <app-header />
 
       <div class="container mt-5">
+
+        <h2>Movies</h2>
         <!-- info che mi servono -->
         <ul v-for="movie in store.movies">
           <!-- prendo i nomi delle chiavi che voglio usare -->
@@ -109,6 +108,19 @@ export default {
           </li>
           <li>voto: {{ movie.vote }}</li>
         </ul>
+
+        <h2>Tv Setries</h2>
+        <!-- info che mi servono -->
+        <ul v-for="tvSerie in store.tvSeries">
+          <!-- prendo i nomi delle chiavi che voglio usare -->
+          <li>titolo: {{ tvSerie.title }}</li>
+          <li>titolo originale: {{ tvSerie.original_title }}</li>
+          <li>lingua:
+            <img :src="getFlag(tvSerie.language)" width="50">
+          </li>
+          <li>voto: {{ tvSerie.vote }}</li>
+        </ul>
+
       </div>
 
     </div>
