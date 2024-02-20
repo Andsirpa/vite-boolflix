@@ -37,7 +37,7 @@ export default {
               title: movie.title,
               original_title: movie.original_title,
               language: movie.original_language,
-              vote: movie.vote_average,
+              vote: Math.ceil(movie.vote_average / 2),
               poster_path: movie.poster_path,
             };
           });
@@ -62,7 +62,7 @@ export default {
               title: tvSerie.title,
               original_title: tvSerie.original_title,
               language: tvSerie.original_language,
-              vote: tvSerie.vote_average,
+              vote: Math.ceil(tvSerie.vote_average / 2),
               poster_path: tvSerie.poster_path,
             };
           });
