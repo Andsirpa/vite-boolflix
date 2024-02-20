@@ -14,7 +14,8 @@ export default {
 
   // creo il metodo per la ricerca
   methods: {
-    Search() {
+
+    fetchMovies() {
       axios
         .get(`${this.store.api.uri}/search/movie`, {
           // in params posso mettere tanti parametri
@@ -33,13 +34,16 @@ export default {
               original_title: movie.original_title,
               language: movie.original_language,
               vote: movie.vote_average,
-
-
-            }
+            };
           });
-
         });
+
     },
+
+    Search() {
+      this.fetchMovies();
+    },
+
 
     // aggiungo le bandiere
 
