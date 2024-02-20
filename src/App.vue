@@ -38,7 +38,7 @@ export default {
               original_title: movie.original_title,
               language: movie.original_language,
               vote: movie.vote_average,
-              poster: movie.poster_path,
+              poster_path: movie.poster_path,
             };
           });
         });
@@ -63,7 +63,7 @@ export default {
               original_title: tvSerie.original_title,
               language: tvSerie.original_language,
               vote: tvSerie.vote_average,
-              poster: tvSerie.poster_path,
+              poster_path: tvSerie.poster_path,
             };
           });
 

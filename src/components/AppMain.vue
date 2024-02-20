@@ -38,6 +38,8 @@ export default {
                 <img :src="getFlag(movie.language)" width="50">
             </li>
             <li>voto: {{ movie.vote }}</li>
+            <!-- aggiungo il poster e gli do la dimensione desiderata -->
+            <li><img :src="`https://image.tmdb.org/t/p/w342/${movie.poster_path}`" alt=""></li>
         </ul>
 
         <h2>Tv Series</h2>
@@ -50,6 +52,8 @@ export default {
                 <img :src="getFlag(tvSerie.language)" width="50">
             </li>
             <li>voto: {{ tvSerie.vote }}</li>
+            <li><img :src="`https://image.tmdb.org/t/p/w342/${tvSerie.poster_path}`" alt=""></li>
+
         </ul>
 
     </div>
