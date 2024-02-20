@@ -41,6 +41,18 @@ export default {
         });
     },
 
+    // aggiungo le bandiere
+
+    getFlag(langCode) {
+      // guard close per rendere il codice più compatto
+      if (langCode == 'it') return new URL('./assets/img/itflag.jpeg', import.meta.url).href;
+      if (langCode == 'en') return new URL('./assets/img/engflag.png', import.meta.url).href;
+
+      // se la lingua è diversa metto una bandiera bianca
+      return new URL('./assets/img/whiteflag.jpeg', import.meta.url).href;
+
+    },
+
   },
 };
 </script>
@@ -64,7 +76,9 @@ export default {
           <!-- prendo i nomi delle chiavi che voglio usare -->
           <li>titolo: {{ movie.title }}</li>
           <li>titolo originale: {{ movie.original_title }}</li>
-          <li>lingua: {{ movie.language }}</li>
+          <li>lingua:
+            <img :src="getFlag(movie.language)" width="50">
+          </li>
           <li>voto: {{ movie.vote }}</li>
         </ul>
       </div>
