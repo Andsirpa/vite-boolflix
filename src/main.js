@@ -19,7 +19,7 @@ import { faStar as emptyStar } from '@awesome.me/free-regular-svg-icons'
 import { all } from '@awesome.me/free-brands-svg-icons'
 
 /* add icons to the library */
-library.add(fullStarr, emptyStar);
+library.add(fullStar, emptyStar);
 
 const app = createApp(App);
 app.component('font-awesome-icon', FontAwesomeIcon);

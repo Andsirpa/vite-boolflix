@@ -2,6 +2,9 @@
 // importo lo store
 import { store } from "../store";
 
+// importo il componente AppCard
+import AppCard from "./AppCard.vue";
+
 export default {
     data() {
 
@@ -10,18 +13,7 @@ export default {
         };
     },
 
-    methods: {
-        getFlag(langCode) {
-            // guard close per rendere il codice più compatto
-            if (langCode == 'it') return new URL('../assets/img/itflag.jpeg', import.meta.url).href;
-            if (langCode == 'en') return new URL('../assets/img/engflag.png', import.meta.url).href;
-
-            // se la lingua è diversa metto una bandiera bianca
-            return new URL('../assets/img/whiteflag.jpeg', import.meta.url).href;
-
-        },
-
-    }
+    components: { AppCard },
 };
 </script>
 
@@ -29,40 +21,10 @@ export default {
     <div class="container mt-5">
 
         <h2>Movies</h2>
-        <!-- info che mi servono -->
-        <ul v-for="movie in store.movies">
-            <!-- prendo i nomi delle chiavi che voglio usare -->
-            <li>titolo: {{ movie.title }}</li>
-            <li>titolo originale: {{ movie.original_title }}</li>
-            <li>lingua:
-                <img :src="getFlag(movie.language)" width="50">
-            </li>
-            <li>voto: {{ movie.vote }} <br>
-                <!-- stampo le stelle in base al voto -->
-                <font-awesome-icon v-for="star in 5"
-                    :icon="star <= movie.vote ? 'fa-solid fa-star' : 'fa-regular fa-star'" />
-            </li>
+        <app-card v-for="movie in store.movies" :production="movie" />
 
-            <!-- aggiungo il poster e gli do la dimensione desiderata -->
-            <li><img :src="`https://image.tmdb.org/t/p/w342/${movie.poster_path}`" alt=""></li>
-        </ul>
-
-        <h2>Tv Series</h2>
-        <!-- info che mi servono -->
-        <ul v-for="tvSerie in store.tvSeries">
-            <!-- prendo i nomi delle chiavi che voglio usare -->
-            <li>titolo: {{ tvSerie.title }}</li>
-            <li>titolo originale: {{ tvSerie.original_title }}</li>
-            <li>lingua:
-                <img :src="getFlag(tvSerie.language)" width="50">
-            </li>
-            <li>voto: {{ tvSerie.vote }} <br>
-                <font-awesome-icon v-for="star in 5"
-                    :icon="star <= tvSerie.vote ? 'fa-solid fa-star' : 'fa-regular fa-star'" />
-            </li>
-            <li><img :src="`https://image.tmdb.org/t/p/w342/${tvSerie.poster_path}`" alt=""></li>
-
-        </ul>
+        <h2>tv Series</h2>
+        <app-card v-for="tvSerie in store.tvSeries" :production="tvSerie" />
 
     </div>
 </template>
