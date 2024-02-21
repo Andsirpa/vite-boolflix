@@ -34,6 +34,7 @@ export default {
           store.movies = response.data.results.map((movie) => {
             return {
               // nel map posso modificare i nomi chiavi
+              id: movie.id,
               title: movie.title,
               original_title: movie.original_title,
               language: movie.original_language,
@@ -59,6 +60,7 @@ export default {
           store.tvSeries = response.data.results.map((tvSerie) => {
             return {
               // nel map posso modificare i nomi chiavi
+              id: tvSerie.id,
               title: tvSerie.title,
               original_title: tvSerie.original_title,
               language: tvSerie.original_language,
